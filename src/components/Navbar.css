@@ -1,0 +1,81 @@
+.navbar {
+  padding: 24px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(13, 12, 17, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.nav-logo {
+  height: 32px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent-red);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 12, 17, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 24px;
+    border-bottom: 1px solid var(--glass-border);
+    gap: 20px;
+    align-items: center;
+  }
+  .nav-links.mobile-active {
+    display: flex;
+  }
+  .navbar .btn-primary {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+}

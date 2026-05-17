@@ -1,0 +1,110 @@
+.clients-section {
+  padding: 80px 0;
+  position: relative;
+  background: var(--bg-color); /* keep dark theme */
+  overflow: hidden;
+}
+
+.clients-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.clients-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin-bottom: 10px;
+}
+
+.clients-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* Marquee Container */
+.clients-marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  /* Blurred edges mask */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  padding: 20px 0;
+}
+
+/* Marquee Track */
+.clients-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+  gap: 60px;
+  padding-left: 60px; /* matches gap */
+}
+
+/* Pause on hover */
+.clients-marquee-container:hover .clients-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Client Badge styling to emulate logos */
+.client-logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 0 40px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.client-logo-box:hover {
+  background: rgba(142, 1, 14, 0.05);
+  border-color: var(--accent-red);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(142, 1, 14, 0.1);
+}
+
+.client-logo-box img {
+  max-height: 60px;
+  max-width: 200px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* makes dark logos white */
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.client-logo-box:hover img {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .clients-title {
+    font-size: 2.2rem;
+  }
+  .client-logo-box {
+    height: 80px;
+    min-width: 180px;
+    font-size: 1.1rem;
+    padding: 0 30px;
+  }
+  .clients-marquee-track {
+    gap: 40px;
+    padding-left: 40px;
+  }
+}

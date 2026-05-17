@@ -1,0 +1,108 @@
+.hero {
+  padding: 160px 0 80px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right top;
+  mix-blend-mode: screen;
+  /* Add a gradient fade to blend the image into the dark background */
+  mask-image: linear-gradient(to right, transparent, black 40%);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 40%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.highlight-box {
+  display: inline-block;
+  position: relative;
+  color: var(--accent-red);
+}
+
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -8px;
+  right: -8px;
+  bottom: -4px;
+  border: 2px solid var(--accent-red);
+  opacity: 0.8;
+  border-radius: 4px;
+}
+
+.highlight-box::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -12px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-red);
+  border-radius: 1px;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  .hero-bg-container {
+    width: 100%;
+    opacity: 0.2;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 120px 0 60px;
+  }
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

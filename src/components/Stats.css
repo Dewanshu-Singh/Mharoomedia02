@@ -1,0 +1,70 @@
+.stats-section {
+  padding: 40px 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(13, 12, 17, 0.5);
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap; /* Keep it on one row */
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+}
+
+.stat-line {
+  width: 40px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 4rem;
+  font-weight: 600;
+  color: white;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+@media (max-width: 992px) {
+  .stat-number {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-container {
+    overflow-x: auto;
+    padding-bottom: 16px;
+    /* Optional scroll snap for mobile if it overflows */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .stat-item {
+    min-width: 160px;
+    scroll-snap-align: start;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
