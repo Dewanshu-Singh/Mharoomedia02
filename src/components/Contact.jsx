@@ -44,7 +44,10 @@ const Contact = () => {
     setStatus('loading');
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'https://mharoomedia02.onrender.com';
+      // Remove trailing slash if present to prevent double-slash 404 errors
+      const rawApiUrl = import.meta.env.VITE_API_URL || 'https://mharoomedia02.onrender.com';
+      const API_URL = rawApiUrl.replace(/\/$/, '');
+      
       const res = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
