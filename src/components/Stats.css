@@ -1,8 +1,8 @@
 .stats-section {
-  padding: 40px 0;
+  padding: 24px 0;
   border-top: 1px solid var(--glass-border);
   border-bottom: 1px solid var(--glass-border);
-  background: rgba(13, 12, 17, 0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .stats-container {
@@ -26,20 +26,20 @@
 .stat-line {
   width: 40px;
   height: 2px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   margin-bottom: 8px;
 }
 
 .stat-number {
   font-size: 4rem;
   font-weight: 600;
-  color: white;
+  color: var(--text-primary);
   line-height: 1;
 }
 
 .stat-label {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.4;
   max-width: 200px;
 }

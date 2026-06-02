@@ -1,15 +1,15 @@
 .footer-section {
-  background: rgba(13, 12, 17, 0.95);
+  background: var(--bg-color);
   border-top: 1px solid var(--glass-border);
-  padding: 80px 0 24px;
+  padding: 60px 0 24px;
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 40px;
-  margin-bottom: 60px;
+  gap: 32px;
+  margin-bottom: 40px;
 }
 
 .footer-brand {
@@ -31,7 +31,7 @@
 }
 
 .footer-brand-name {
-  color: var(--accent-red);
+  color: #8e010e;
   font-weight: 700;
   font-size: 1.6rem;
   letter-spacing: -0.5px;
@@ -53,31 +53,32 @@
 .social-icon {
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  color: white;
+  color: var(--text-primary);
   transition: all 0.3s ease;
   border: 1px solid var(--glass-border);
 }
 
 .social-icon:hover {
-  background: var(--accent-red);
-  border-color: var(--accent-red);
+  background: #8e010e;
+  border-color: #8e010e;
+  color: white;
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(142, 1, 14, 0.2);
 }
 
 .footer-links-group {
   display: flex;
-  gap: 100px;
+  gap: 60px;
   flex-wrap: wrap;
 }
 
 .footer-column h4 {
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 24px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -105,12 +106,12 @@
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: var(--accent-red);
+  background-color: #8e010e;
   transition: width 0.3s ease;
 }
 
 .footer-column a:hover {
-  color: white;
+  color: var(--text-primary);
 }
 
 .footer-column a:hover::after {
@@ -120,24 +121,24 @@
 .footer-bottom {
   text-align: center;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--glass-border);
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
 @media (max-width: 992px) {
   .footer-links-group {
-    gap: 60px;
+    gap: 40px;
   }
 }
 
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
   }
   .footer-links-group {
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
   }
 }

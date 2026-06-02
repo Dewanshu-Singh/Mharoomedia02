@@ -1,50 +1,65 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Hero.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Hero = () => {
+  const heroRef = useRef(null);
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    
+    // Entrance animations
+    tl.fromTo('.hero-title', 
+      { y: 50, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+    )
+    .fromTo('.hero-desc', 
+      { y: 30, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 
+      "-=0.6"
+    )
+    .fromTo('.hero-actions', 
+      { y: 20, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }, 
+      "-=0.4"
+    );
+
+  }, { scope: heroRef });
+
   return (
-    <section className="hero">
-      <div className="hero-bg-container">
-        {/* Placeholder for the line art background */}
-        <img src="/hero-bg.png" alt="" className="hero-bg-image" onError={(e) => {
-          e.target.style.display = 'none';
-        }} />
-      </div>
-      
+    <section className="hero" id="home" ref={heroRef}>
       <div className="container">
-        <div className="hero-content">
-          <motion.h1 
-            className="hero-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            Turning <span className="highlight-box">Ideas</span> Into<br />
-            Digital Reality
-          </motion.h1>
-          
-          <motion.p 
-            className="hero-desc"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
-            Trusted by businesses across India, we combine creativity, innovation, and smart targeting to build impactful digital experiences that connect brands with the right audience.
-          </motion.p>
-          
-          <motion.div 
-            className="hero-actions"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          >
-            <button className="btn-primary">Start a Project</button>
-            <button className="btn-text">
-              See Our Work <ArrowRight size={20} />
-            </button>
-          </motion.div>
+        <div className="hero-layout">
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Turning <span className="highlight-box">Ideas</span> Into<br />
+              Digital Reality
+            </h1>
+            
+            <p className="hero-desc">
+              We combine creativity, innovation, and smart targeting to build impactful digital experiences that connect brands with the right audience.
+            </p>
+            
+            <div className="hero-actions">
+              <button 
+                className="btn-primary" 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
+              >
+                Start a Project <ArrowRight size={16} style={{marginLeft: '8px'}} />
+              </button>
+              <button 
+                className="btn-secondary"
+                onClick={() => document.getElementById('portfolio')?.scrollIntoView({behavior: 'smooth'})}
+              >
+                View Our Work <ArrowRight size={16} style={{marginLeft: '8px'}} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

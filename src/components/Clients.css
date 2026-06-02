@@ -1,13 +1,13 @@
 .clients-section {
-  padding: 80px 0;
+  padding: 50px 0;
   position: relative;
-  background: var(--bg-color); /* keep dark theme */
+  background: transparent;
   overflow: hidden;
 }
 
 .clients-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 }
 
 .clients-title {
@@ -59,11 +59,11 @@
   justify-content: center;
   height: 100px;
   min-width: 220px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   padding: 0 40px;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 1.3rem;
   letter-spacing: 1.5px;
@@ -73,9 +73,9 @@
 }
 
 .client-logo-box:hover {
-  background: rgba(142, 1, 14, 0.05);
+  background: rgba(211, 47, 47, 0.05);
   border-color: var(--accent-red);
-  color: white;
+  color: var(--text-primary);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(142, 1, 14, 0.1);
 }
@@ -84,7 +84,7 @@
   max-height: 60px;
   max-width: 200px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* makes dark logos white */
+  filter: none;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }

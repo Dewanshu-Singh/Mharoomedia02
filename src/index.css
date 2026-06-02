@@ -1,12 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 :root {
-  --bg-color: #0d0c11;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0ab;
-  --accent-red: #8e010e;
-  --accent-red-hover: #72000b;
-  --glass-bg: rgba(255, 255, 255, 0.03);
+  --bg-color: #0a0a0a;
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --accent-red: #b80015; /* Brighter, attractive maroon */
+  --accent-red-hover: #8a0010;
+  --glass-bg: rgba(30, 30, 30, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -19,14 +39,52 @@
 body {
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg-color);
-  background-image: 
-    radial-gradient(circle at 0% 50%, rgba(160, 20, 30, 0.15), transparent 40%),
-    radial-gradient(circle at 100% 80%, rgba(160, 20, 30, 0.15), transparent 50%);
-  background-attachment: fixed;
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  position: relative;
 }
+
+/* Global fixed line-art background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/Gemini_Generated_Image_fvy0nrfvy0nrfvy0.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* The exact mathematical inverse of #8e010e is #71fef1. 
+     Using screen blend mode turns the black lines Cyan, and keeps bg White */
+  background-color: #71fef1;
+  background-blend-mode: screen;
+  
+  /* Invert turns the White bg to Black, and Cyan lines to #8e010e! */
+  filter: invert(1);
+  
+  /* Screen blends the Black bg out, leaving only the #8e010e lines on top of our dark theme */
+  mix-blend-mode: screen;
+  
+  /* Increased visibility as requested */
+  opacity: 0.4; 
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hide default cursor on desktop for custom cursor */
+@media (pointer: fine) {
+  body, a, button {
+    cursor: none !important;
+  }
+}
+
+/* Blurred Global Background Removed */
 
 /* Base styles */
 a {
@@ -69,6 +127,30 @@ ul {
   box-shadow: 0 4px 12px rgba(142, 1, 14, 0.3);
 }
 
+/* Secondary Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 500;
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
 /* Text Button with Arrow */
 .btn-text {
   background: transparent;
@@ -91,6 +173,7 @@ ul {
 .section-title {
   font-size: 2.5rem;
   font-weight: 600;
+  color: var(--accent-red);
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
@@ -116,4 +199,15 @@ ul {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
+
+.app-content-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+

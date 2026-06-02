@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Footer.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Footer = () => {
+  const footerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.fromTo('.footer-anim-brand',
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
+    );
+    gsap.fromTo('.footer-anim-links',
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, delay: 0.2, scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
+    );
+    gsap.fromTo('.footer-anim-legal',
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, delay: 0.4, scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
+    );
+    gsap.fromTo('.footer-anim-bottom',
+      { opacity: 0 },
+      { opacity: 1, duration: 1, delay: 0.6, scrollTrigger: { trigger: footerRef.current, start: 'top 90%' } }
+    );
+  }, { scope: footerRef });
+
   return (
-    <footer className="footer-section">
+    <footer className="footer-section" ref={footerRef}>
       <div className="container">
         <div className="footer-container">
           
-          <div className="footer-brand">
+          <div className="footer-brand footer-anim-brand">
             <div className="footer-logo-row">
               <img src="/logo-removebg-preview.png" alt="MharooMedia Logo" className="footer-logo" onError={(e) => {
                 e.target.style.display = 'none';
@@ -21,10 +48,10 @@ const Footer = () => {
               <a href="https://www.instagram.com/mharoomedia?igsh=MWk3NnR6eWZ2MHdmdA==" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.facebook.com/share/1DxDZrb78d/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.linkedin.com/company/mharoomedia/" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
               <a href="https://youtube.com/@mharoomedia?si=UeVxYeuUDPDZGTxp" target="_blank" rel="noopener noreferrer" className="social-icon">
@@ -34,17 +61,18 @@ const Footer = () => {
           </div>
           
           <div className="footer-links-group">
-            <div className="footer-column">
+            <div className="footer-column footer-anim-links">
               <h4>Quick Links</h4>
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#services">Our Services</a></li>
-                <li><a href="#portfolio">Our Works</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#journey">Our Journey</a></li>
+                <li><Link to="/about">About</Link></li>
+                <li><a href="/#contact">Contact</a></li>
               </ul>
             </div>
             
-            <div className="footer-column">
+            <div className="footer-column footer-anim-legal">
               <h4>Legal Info</h4>
               <ul>
                 <li><a href="#">Privacy Policy</a></li>
@@ -56,7 +84,7 @@ const Footer = () => {
           
         </div>
         
-        <div className="footer-bottom">
+        <div className="footer-bottom footer-anim-bottom">
           <p>&copy; {new Date().getFullYear()} Mharoo Media. All rights reserved.</p>
         </div>
       </div>

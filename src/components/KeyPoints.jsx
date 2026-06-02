@@ -38,7 +38,14 @@ const KeyPoints = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            "Biggest <img src="/google-logo-icon-symbol-free-png.webp" alt="Google" className="headline-google-logo" /> Partner Agency in Rajasthan"
+            "Biggest <span className="google-text">
+              <span style={{color: '#4285F4'}}>G</span>
+              <span style={{color: '#EA4335'}}>o</span>
+              <span style={{color: '#FBBC05'}}>o</span>
+              <span style={{color: '#4285F4'}}>g</span>
+              <span style={{color: '#34A853'}}>l</span>
+              <span style={{color: '#EA4335'}}>e</span>
+            </span> Partner Agency in Rajasthan"
           </motion.h2>
 
           <motion.div

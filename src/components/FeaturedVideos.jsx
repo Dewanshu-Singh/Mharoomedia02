@@ -26,25 +26,39 @@ const videosData = [
   },
   {
     id: 3,
-    title: "Your First Internship",
-    description: "Emerging AI startups pitch their boldest ideas to the nation's top investors.",
-    embedUrl: "https://www.youtube.com/embed/EnudigrxxdE", // Updated with user's link
+    title: "Shodh AI",
+    description: "Discover how Shodh AI is pushing the boundaries of artificial intelligence research and innovation.",
+    embedUrl: "https://www.youtube.com/embed/U3simEyrRJ4", // Updated with user's link
     location: "New Delhi, India",
     date: "March 2026",
     edition: "Session III",
+    tag: "India AI Impact Summit"
+  },
+  {
+    id: 4,
+    title: "Shodh AI’s vision, impact, and future",
+    description: "Explore the long-term vision of Shodh AI, its transformative impact on the industry, and what the future holds.",
+    embedUrl: "https://www.youtube.com/embed/YLhefncZqSs",
+    location: "New Delhi, India",
+    date: "April 2026",
+    edition: "Session IV",
     tag: "India AI Impact Summit"
   }
 ];
 
 const FeaturedVideos = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isInteracting, setIsInteracting] = useState(false);
 
   useEffect(() => {
+    if (isInteracting) return; // Pause auto-slide if user is hovering/interacting
+
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % videosData.length);
     }, 6000); // Auto change every 6 seconds
+    
     return () => clearInterval(timer);
-  }, []);
+  }, [isInteracting]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % videosData.length);
@@ -86,7 +100,12 @@ const FeaturedVideos = () => {
           </motion.p>
         </div>
 
-        <div className="video-carousel-container">
+        <div 
+          className="video-carousel-container"
+          onMouseEnter={() => setIsInteracting(true)}
+          onMouseLeave={() => setIsInteracting(false)}
+          onTouchStart={() => setIsInteracting(true)}
+        >
           <div className="video-counter">
             0{currentIndex + 1} / 0{videosData.length}
           </div>
@@ -128,33 +147,6 @@ const FeaturedVideos = () => {
             ></div>
           ))}
         </div>
-
-        <motion.div 
-          key={currentVideo.id + 'footer'}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="video-footer"
-        >
-          <div className="footer-meta-group">
-            <div className="meta-item">
-              <span className="meta-label">Location</span>
-              <span className="meta-value">{currentVideo.location}</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-label">Date</span>
-              <span className="meta-value">{currentVideo.date}</span>
-            </div>
-            <div className="meta-item">
-              <span className="meta-label">Edition</span>
-              <span className="meta-value">{currentVideo.edition}</span>
-            </div>
-          </div>
-          
-          <div className="footer-tag">
-            <span>✦</span> {currentVideo.tag}
-          </div>
-        </motion.div>
 
       </div>
     </section>

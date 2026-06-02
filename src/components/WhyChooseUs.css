@@ -1,0 +1,166 @@
+.why-choose-us-section {
+  padding: 80px 0;
+  position: relative;
+  background: var(--bg-primary); /* Assuming a dark theme from other components */
+  overflow: hidden;
+}
+
+.wcu-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.wcu-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  margin-bottom: 15px;
+}
+
+.wcu-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.wcu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.wcu-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+/* Hover glowing effect - A soft radial glow that expands */
+.wcu-card::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle at center, rgba(142, 1, 14, 0.15) 0%, transparent 60%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.wcu-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(142, 1, 14, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(142, 1, 14, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.wcu-card:hover::before {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.wcu-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, rgba(142, 1, 14, 0.2), rgba(142, 1, 14, 0.05));
+  color: var(--accent-red);
+  border-radius: 20px;
+  margin-bottom: 30px;
+  transition: all 0.5s ease;
+  border: 1px solid rgba(142, 1, 14, 0.3);
+  box-shadow: 0 8px 20px rgba(142, 1, 14, 0.1);
+}
+
+.wcu-card:hover .wcu-icon-wrapper {
+  transform: scale(1.1) translateY(-5px);
+  background: linear-gradient(135deg, var(--accent-red), #5a0008);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 15px 30px rgba(142, 1, 14, 0.3);
+}
+
+.wcu-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.wcu-card-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.why-choose-us-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Card Number Watermark */
+.wcu-card-watermark {
+  position: absolute;
+  bottom: -25px;
+  right: 15px;
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.15); /* Increased opacity for visibility */
+  z-index: 0;
+  transition: all 0.5s ease;
+  pointer-events: none;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.wcu-card:hover .wcu-card-watermark {
+  color: rgba(142, 1, 14, 0.3); /* Darker red on hover */
+  transform: translateY(-10px) scale(1.05);
+}
+
+.wcu-icon-wrapper, .wcu-card-title, .wcu-card-desc {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 992px) {
+  .wcu-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-choose-us-section {
+    padding: 40px 15px;
+  }
+  
+  .wcu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .wcu-title {
+    font-size: 2rem;
+  }
+  
+  .wcu-card {
+    padding: 24px;
+  }
+}

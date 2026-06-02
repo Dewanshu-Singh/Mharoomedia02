@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { ReactLenis } from 'lenis/react';
+
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import KeyPoints from './components/KeyPoints';
-import Stats from './components/Stats';
-import Services from './components/Services';
-import Works from './components/Works';
-import FeaturedVideos from './components/FeaturedVideos';
-import Clients from './components/Clients';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import AllServices from './components/AllServices';
+import PortfolioGallery from './pages/PortfolioGallery';
+import CustomCursor from './components/CustomCursor';
+
+// ScrollToTop helper for react-router with Lenis
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 function App() {
   return (
-    <div className="app-container">
-      <Navbar />
-      <Hero />
-      <KeyPoints />
-      <Stats />
-      <Services />
-      <Works />
-      <FeaturedVideos />
-      <Clients />
-      <Contact />
-      <Footer />
-    </div>
+    <ReactLenis root>
+      <CustomCursor />
+      <Router>
+        <ScrollToTop />
+        <div className="app-container">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<AllServices />} />
+            <Route path="/portfolio" element={<PortfolioGallery />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ReactLenis>
   );
 }
 
 export default App;
+

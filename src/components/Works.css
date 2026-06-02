@@ -1,5 +1,5 @@
 .works-section {
-  padding: 100px 0;
+  padding: 60px 0;
   position: relative;
   overflow: hidden;
 }
@@ -14,7 +14,7 @@
 .works-subtitle {
   color: var(--text-secondary);
   font-size: 1.2rem;
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 }
 
 .works-carousel {
@@ -34,15 +34,16 @@
   height: 100%;
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
 }
 
 .works-card img {
   width: 100%;
-  height: 100%;
+  height: 120%;
   object-fit: cover;
+  transform: translateY(-10%);
 }
 
 @media (max-width: 992px) {

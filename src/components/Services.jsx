@@ -1,74 +1,95 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import './Services.css';
+import Magnetic from './Magnetic';
 
 const servicesData = [
-  { id: 1, title: "Social Media Management", image: "/illustration-of-people-using-social-media-free-vector.webp" },
-  { id: 2, title: "Search Engine Optimization", image: "/seo-manager-illustration-concept-on-white-background-vector.jpg" },
-  { id: 3, title: "Reels and Video Contents", image: "/social-media-marketing_773186-874.webp" },
-  { id: 4, title: "Performance Marketing", image: "/marketing-specialist-with-loudspeaker-influence-businessmen-and-globe-macromarketing-social-influence-global-marketing-strategy-concept-flat-modern-illustration-vector.webp" },
-  { id: 5, title: "Branding & Identity", image: "/woman-create-brand-young-girl-with-laptop-developing-brand-for-company-graphic-designer-and.webp" },
-  { id: 6, title: "Influencer Collaborations", image: "/influence-marketing-concept.webp" }
+  { id: 1, title: "Social Media Management", image: "/ELEMENT1.svg", desc: "Build audience and engagement with tailored social media strategies." },
+  { id: 2, title: "Search Engine Optimization", image: "/ELEMENT2.svg", desc: "Drive organic traffic and improve visibility on search engines." },
+  { id: 3, title: "Reels & Video Content", image: "/ELEMENT3.svg", desc: "Engaging short-form videos optimized for maximum reach." },
+  { id: 4, title: "Performance Marketing", image: "/ELEMENT4.svg", desc: "Data-driven campaigns focusing on measurable results and ROI." },
+  { id: 5, title: "Branding & Identity", image: "/ELEMENT5.svg", desc: "Crafting a unique and memorable brand identity." },
+  { id: 6, title: "Influencer Collabs", image: "/ELEMENT6.svg", desc: "Partnering with influencers to amplify your brand message." }
 ];
 
 const Services = () => {
-  const [startIndex, setStartIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setStartIndex((prev) => (prev + 1) % servicesData.length);
-    }, 4000); // Change every 4 seconds
-    
-    return () => clearInterval(timer);
-  }, []);
-
-  const visibleServices = [
-    servicesData[startIndex],
-    servicesData[(startIndex + 1) % servicesData.length]
-  ];
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="services-section" id="services">
       <div className="container">
-        <div className="services-header">
-          <h2 className="section-title justify-center">Our Services</h2>
-          <p className="services-subtitle">Six Ways We Scale Your Brand.</p>
-        </div>
-
-        <div className="services-carousel">
-          <AnimatePresence mode="wait">
-            <motion.div 
-              key={startIndex} // Keying by startIndex ensures the whole row transitions together
-              className="services-row"
-              style={{ display: 'flex', gap: '40px', width: '100%' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {visibleServices.map((service) => (
-                <div
-                  key={service.id}
-                  className={`service-card ${service.id % 2 === 0 ? 'image-right' : 'image-left'}`}
+        <div className="services-showcase-container">
+          
+          <div className="services-left">
+            <h2 className="section-title showcase-title">Our Expertise</h2>
+            <p className="showcase-subtitle">Six Ways We Scale Your Brand.</p>
+            
+            <div className="services-list">
+              {servicesData.map((service, index) => (
+                <div 
+                  key={service.id} 
+                  className={`service-list-item ${activeIndex === index ? 'active' : ''}`}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => setActiveIndex(index)}
                 >
-                  <div className="service-image-container">
-                     <img src={service.image} alt={service.title} className="service-image" onError={(e) => {
-                       e.target.style.display = 'none';
-                     }} />
+                  <div className="service-list-item-content">
+                    <span className="service-number">0{index + 1}</span>
+                    <h3 className="service-list-title">{service.title}</h3>
                   </div>
-                  <div className="service-content">
-                     <h3 className="service-title">{service.title}</h3>
-                     <a href="#" className="service-link">View More <ArrowRight size={18} /></a>
-                  </div>
+                  
+                  <AnimatePresence>
+                    {activeIndex === index && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="service-list-desc"
+                      >
+                        <p>{service.desc}</p>
+                        <Link to="/services" className="service-explore-link">
+                           Explore <ArrowUpRight size={16} />
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
+          
+          <div className="services-right">
+            <div className="sticky-image-container">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 1.05, y: -30 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="showcase-image-wrapper"
+                >
+                   <img 
+                     src={servicesData[activeIndex].image} 
+                     alt={servicesData[activeIndex].title} 
+                     className="showcase-image" 
+                     onError={(e) => { e.target.style.display = 'none'; }}
+                   />
+                </motion.div>
+              </AnimatePresence>
+              
+              <div className="showcase-blob"></div>
+            </div>
+          </div>
+
         </div>
         
-        <div className="text-center mt-40">
-           <button className="btn-primary">View All Services</button>
+        <div className="text-center mt-20">
+           <Magnetic>
+             <Link to="/services" className="btn-primary magnetic-target" style={{ display: 'inline-block' }}>View All Services</Link>
+           </Magnetic>
         </div>
       </div>
     </section>
