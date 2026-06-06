@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TiltCard from '../components/TiltCard';
 import MobileVoicesCarousel from '../components/MobileVoicesCarousel';
+import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -744,6 +745,7 @@ const RajasthanTour = () => {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 };
