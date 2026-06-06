@@ -10,6 +10,11 @@ import AllServices from './components/AllServices';
 import PortfolioGallery from './pages/PortfolioGallery';
 import CustomCursor from './components/CustomCursor';
 
+import RajasthanTour from './pages/RajasthanTour';
+
+import PageTransition from './components/PageTransition';
+import { AnimatePresence } from 'framer-motion';
+
 // ScrollToTop helper for react-router with Lenis
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -17,6 +22,21 @@ const ScrollToTop = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+};
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/services" element={<PageTransition><AllServices /></PageTransition>} />
+        <Route path="/portfolio" element={<PageTransition><PortfolioGallery /></PageTransition>} />
+        <Route path="/rajasthan-tour" element={<PageTransition><RajasthanTour /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
 };
 
 function App() {
@@ -27,12 +47,7 @@ function App() {
         <ScrollToTop />
         <div className="app-container">
           <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<AllServices />} />
-            <Route path="/portfolio" element={<PortfolioGallery />} />
-          </Routes>
+          <AnimatedRoutes />
           <Footer />
         </div>
       </Router>

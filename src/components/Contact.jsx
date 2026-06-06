@@ -130,13 +130,13 @@ const Contact = () => {
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-group">
                 <label className="form-label">Your Name</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" placeholder="e.g. John Doe" />
+                <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-control" placeholder="Your Name" />
                 {errors.name && <span style={{ color: '#ff4d4f', fontSize: '0.85rem', marginTop: '6px', display: 'block' }}>{errors.name}</span>}
               </div>
               
               <div className="form-group">
                 <label className="form-label">Email Address</label>
-                <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="e.g. john@example.com" />
+                <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="user@example.com" />
                 {errors.email && <span style={{ color: '#ff4d4f', fontSize: '0.85rem', marginTop: '6px', display: 'block' }}>{errors.email}</span>}
               </div>
               

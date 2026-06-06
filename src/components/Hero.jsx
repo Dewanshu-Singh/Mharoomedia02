@@ -1,14 +1,16 @@
 import React, { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MapPin } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const navigate = useNavigate();
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -52,12 +54,19 @@ const Hero = () => {
               >
                 Start a Project <ArrowRight size={16} style={{marginLeft: '8px'}} />
               </button>
-              <button 
-                className="btn-secondary"
-                onClick={() => document.getElementById('portfolio')?.scrollIntoView({behavior: 'smooth'})}
-              >
-                View Our Work <ArrowRight size={16} style={{marginLeft: '8px'}} />
-              </button>
+
+              <div className="rj-inline-live-widget" onClick={() => navigate('/rajasthan-tour')}>
+                <div className="rj-floating-content">
+                  <img src="/mic.png" alt="Mic" className="rj-floating-mic" />
+                  <div className="rj-floating-text-group">
+                    <span className="rj-floating-text">The Rajasthan Tour is live</span>
+                    <div className="rj-live-indicator">
+                      <span className="rj-live-dot"></span>
+                      <span className="rj-live-ping"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

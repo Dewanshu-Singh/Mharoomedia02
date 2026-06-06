@@ -122,7 +122,7 @@ const ReelsSection = () => {
             <ChevronLeft size={30} />
           </button>
 
-          <div className="reels-track">
+          <div className="reels-track" style={{ touchAction: 'pan-y' }}>
             <AnimatePresence>
               {reelsData.map((reel, index) => {
                 const { scale, x, zIndex, opacity } = getCardStyles(index);
@@ -143,6 +143,17 @@ const ReelsSection = () => {
                       type: "spring",
                       stiffness: 260,
                       damping: 20
+                    }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={1}
+                    onDragEnd={(e, { offset, velocity }) => {
+                      const swipe = Math.abs(offset.x) * velocity.x;
+                      if (swipe < -100) {
+                        handleNext();
+                      } else if (swipe > 100) {
+                        handlePrev();
+                      }
                     }}
                     onClick={() => {
                       if (!isActive) setActiveIndex(index);

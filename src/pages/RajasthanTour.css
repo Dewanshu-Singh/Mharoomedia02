@@ -1,0 +1,1321 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.rajasthan-tour-page {
+  background-color: transparent; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+}
+
+.rj-hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 8rem 4rem 4rem; 
+  position: relative;
+  z-index: 2;
+  min-height: 90vh; /* Better vertical centering on large screens */
+}
+
+.rj-hero-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.rj-hero-content {
+  flex: 1;
+  max-width: 900px;
+  color: white;
+  z-index: 2;
+  position: relative;
+}
+
+.rj-subtitle {
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.rj-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 9.5rem;
+  font-weight: 400; 
+  line-height: 0.9;
+  margin-bottom: 0.5rem;
+  margin-left: -5px; 
+  text-transform: uppercase;
+  color: white;
+  text-shadow: 0 10px 30px rgba(255, 255, 255, 0.15), 4px 4px 0px rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+  transition: text-shadow 0.3s ease;
+}
+
+.rj-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-title:hover {
+  text-shadow: 0 10px 40px rgba(255, 255, 255, 0.3), 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+.rj-proposal {
+  font-family: 'Outfit', sans-serif; font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #D4AF37; /* Brighter gold */
+  margin-bottom: 6rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.rj-hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 5;
+  margin-left: -200px; 
+}
+
+.rj-hero-image img {
+  width: 140%;
+  max-width: 1000px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.8)); /* Deep shadow for 3D effect */
+  animation: floatCar 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.rj-hero-image::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(184,0,21,0.6) 0%, transparent 70%);
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.9); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes floatCar {
+  0% { transform: translateY(0px) rotate(0deg) scale(1.1); }
+  50% { transform: translateY(-20px) rotate(1deg) scale(1.1); }
+  100% { transform: translateY(0px) rotate(0deg) scale(1.1); }
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1400px) {
+  .rj-title { font-size: 7.5rem; }
+  .rj-hero-image { margin-left: -100px; }
+  .rj-hero-image img { transform: scale(1); max-width: 800px; }
+}
+
+@media (max-width: 1100px) {
+  .rj-hero-container {
+    flex-direction: column;
+    text-align: left;
+    padding-top: 4rem;
+  }
+  
+  .rj-hero-content {
+    max-width: 100%;
+    margin-bottom: 4rem; /* More space between text and car */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align on smaller screens */
+    text-align: center;
+  }
+  
+  .rj-title { font-size: 6rem; margin-left: 0; }
+  .rj-proposal { margin-bottom: 4rem; }
+  
+  .rj-hero-image { margin-left: 0; width: 100%; justify-content: center; }
+  .rj-hero-image img { width: 95%; max-width: 700px; transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .rj-hero-section { padding: 6rem 2rem 2rem; min-height: auto; }
+  .rj-title { font-size: 4rem; }
+  .rj-subtitle { font-size: 1.1rem; }
+  .rj-proposal { font-size: 1.3rem; margin-bottom: 3rem; }
+}
+
+@media (max-width: 480px) {
+  .rj-hero-section { 
+    padding: 6rem 1rem 1rem; 
+    min-height: 100vh;
+  }
+  .rj-hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .rj-title {
+    font-size: 4rem;
+  }
+  .rj-subtitle {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .rj-proposal {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .rj-hero-image {
+    right: 0;
+    width: 100%;
+    margin-left: 5%; /* Push slightly to the right to visually center the car's mass */
+    display: flex;
+    justify-content: center;
+  }
+  .rj-hero-image img {
+    width: 100%;
+    max-width: 100%;
+    /* Keep animation but maybe increase scale if needed, animation overrides transform */
+  }
+}
+
+@media (max-width: 600px) {
+  .rj-hero-image::before {
+    background: radial-gradient(circle, rgba(184,0,21,0.8) 0%, transparent 70%);
+  }
+}
+
+/* --- ABOUT SECTION (WHAT IS MHAROO MEDIA) --- */
+.rj-about-section {
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.rj-about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.rj-about-content {
+  flex: 1;
+  max-width: 550px;
+}
+
+.rj-about-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-primary, #fff);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.rj-about-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-about-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-secondary, #a1a1a6);
+}
+
+.rj-about-text p {
+  margin-bottom: 1.2rem;
+}
+
+.rj-about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.rj-about-text strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.rj-about-highlight {
+  font-style: italic;
+  font-weight: 500;
+  color: #ddd;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.rj-about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 400px;
+}
+
+.rj-about-image img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 1024px) {
+  .rj-about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .rj-about-content {
+    max-width: 100%;
+  }
+  
+  .rj-about-text {
+    text-align: left;
+  }
+  
+  .rj-about-title {
+    font-size: 3rem;
+  }
+  
+  .rj-about-image {
+    max-width: 300px; /* Make it smaller on tablets */
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .rj-about-image {
+    max-width: 250px; /* Even smaller on phones */
+  }
+}
+
+@media (max-width: 480px) {
+  .rj-about-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .rj-about-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .rj-about-text p {
+    margin-bottom: 0.8rem;
+  }
+  
+  .rj-about-highlight {
+    padding-top: 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  .rj-about-image {
+    max-width: 200px; /* Smallest on very small phones */
+  }
+}
+
+/* --- ON TOUR ACROSS RAJASTHAN SECTION --- */
+.rj-tour-section {
+  padding: 4rem 2rem; /* Reduced from 8rem */
+  position: relative;
+  z-index: 2;
+  /* Removed solid background so the page's main background shows through */
+}
+
+.rj-tour-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rj-tour-header {
+  text-align: center;
+  margin-bottom: 3rem; /* Reduced from 5rem */
+}
+
+.rj-tour-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 4rem; /* Reduced from 5rem */
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-primary, #fff);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem; /* Reduced from 1rem */
+  letter-spacing: -1px;
+}
+
+.rj-tour-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-tour-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem; /* Reduced from 1.5rem */
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary, #a1a1a6);
+}
+
+.rj-tour-cards-container {
+  position: relative;
+  margin-bottom: 2rem; /* Reduced from 4rem */
+}
+
+.rj-tour-dashed-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  border-top: 2px dashed rgba(255, 255, 255, 0.2); /* Subtle dashed line */
+  z-index: 0;
+}
+
+.rj-tour-cards-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.rj-tour-card {
+  flex: 1;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border instead of red shadow */
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  background: #000;
+  aspect-ratio: 3 / 4;
+}
+
+.rj-tour-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(212, 175, 55, 0.5); /* Gold border on hover */
+}
+
+.rj-tour-card-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.rj-tour-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.rj-tour-card:hover .rj-tour-card-image img {
+  transform: scale(1.1);
+}
+
+.rj-tour-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+}
+
+.rj-tour-card-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem; /* Reduced from 1.5rem */
+  text-align: center;
+  z-index: 2;
+}
+
+.rj-tour-card-text h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem; /* Reduced from 2.2rem */
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+}
+
+.rj-tour-card-text p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem; /* Reduced from 1rem */
+  font-weight: 600;
+  color: #fff;
+}
+
+.rj-tour-footer {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-top: 1rem; /* Reduced from 2rem */
+}
+
+.rj-tour-footer p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem; /* Reduced from 1.1rem */
+  line-height: 1.6;
+  color: var(--text-secondary, #ccc);
+}
+
+.rj-tour-footer strong {
+  color: var(--accent-red, #b80015);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.rj-tour-swipe-indicator {
+  display: none;
+  text-align: right;
+  font-family: 'Outfit', sans-serif;
+  color: var(--accent-gold, #d8b056);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  animation: bounceRight 2s infinite;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+}
+
+.rj-tour-swipe-indicator.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes bounceRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+/* --- VOICES OF CHANGE SECTION --- */
+.rj-voices-section {
+  padding: 6rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.rj-voices-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.rj-voices-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.rj-voices-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.rj-voices-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-voices-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 2rem; /* Space for scrollbar */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+.rj-voices-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome/Safari */
+}
+
+.rj-voices-carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.rj-voices-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.rj-voices-scroll-btn:hover {
+  background-color: rgba(184, 0, 21, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.rj-voices-scroll-btn.left {
+  left: -20px;
+}
+
+.rj-voices-scroll-btn.right {
+  right: -20px;
+}
+
+.rj-voice-card-wrapper {
+  flex: 0 0 280px;
+  scroll-snap-align: center;
+}
+
+.rj-voice-card {
+  background: linear-gradient(145deg, rgba(40, 5, 10, 0.8), rgba(15, 0, 3, 0.95));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.rj-voice-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.9), 0 0 30px rgba(216, 176, 86, 0.15);
+  border-color: rgba(216, 176, 86, 0.4);
+  transform: translateY(-8px);
+}
+
+.rj-voice-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  transition: all 0.5s ease;
+}
+
+.rj-voice-card:hover .rj-voice-image-wrapper {
+  border-color: rgba(216, 176, 86, 0.8);
+  box-shadow: 0 10px 20px rgba(216, 176, 86, 0.2);
+}
+
+.rj-voice-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.rj-voice-card:hover .rj-voice-image-wrapper img {
+  transform: scale(1.08); /* Premium zoom effect */
+}
+
+.rj-voice-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 100%);
+}
+
+.rj-voice-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.8rem 0.5rem;
+  text-align: center;
+}
+
+.rj-voice-info h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.25rem;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.rj-voice-info p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  color: var(--accent-gold, #d8b056);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.rj-voice-details {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(216, 176, 86, 0.15);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.rj-voice-card:hover .rj-voice-details {
+  background: rgba(216, 176, 86, 0.08);
+  border-color: rgba(216, 176, 86, 0.4);
+}
+
+.rj-voice-details h4 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--accent-gold, #d8b056);
+  margin-bottom: 0.4rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.rj-voice-details p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  color: #ccc;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .rj-voices-title {
+    font-size: 3.5rem;
+  }
+  .rj-voices-scroll-btn {
+    display: none; /* Hide manual buttons on tablet/mobile where touch scrolling is natural */
+  }
+}
+
+@media (max-width: 600px) {
+  .rj-voices-grid {
+    gap: 1.5rem;
+  }
+  .rj-voice-card-wrapper {
+    flex: 0 0 240px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .rj-voice-card-wrapper {
+    flex: 0 0 220px;
+  }
+}
+@media (max-width: 1200px) {
+  .rj-tour-title { font-size: 5rem; }
+  .rj-tour-card-text h3 { font-size: 1.8rem; }
+}
+
+@media (max-width: 900px) {
+  .rj-tour-title { font-size: 3.5rem; }
+  .rj-tour-subtitle { font-size: 1.2rem; }
+  
+  .rj-tour-swipe-indicator {
+    display: block;
+  }
+  
+  .rj-tour-dashed-line { display: none; }
+  
+  .rj-tour-cards-container {
+    margin-right: -2rem; /* Bleed to the edge for swiping */
+    padding-bottom: 1rem;
+  }
+  
+  .rj-tour-cards-flex {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    padding-right: 2rem; /* Space at end of scroll */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .rj-tour-cards-flex::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .rj-tour-card {
+    flex: 0 0 75%; /* Card takes 75% of screen width, hinting next card */
+    max-width: 350px;
+    scroll-snap-align: center;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (max-width: 480px) {
+  .rj-tour-title { font-size: 2.5rem; }
+  .rj-tour-card {
+    flex: 0 0 85%;
+  }
+}
+
+/* =========================================
+   WHY MHAROO CAST SECTION
+   ========================================= */
+.rj-why-section {
+  background-color: transparent;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.rj-why-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rj-why-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.rj-why-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-why-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rj-why-subtitle strong {
+  color: #fff;
+}
+
+.rj-why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.rj-why-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: left;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.rj-why-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(216, 176, 86, 0.15);
+  border-color: rgba(216, 176, 86, 0.3);
+}
+
+.rj-why-icon {
+  color: var(--accent-gold, #d8b056);
+  margin-bottom: 1.5rem;
+}
+
+.rj-why-card h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 2rem;
+  color: var(--accent-gold, #d8b056);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.rj-why-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* =========================================
+   THE STORIES WE'RE TELLING SECTION
+   ========================================= */
+.rj-stories-section {
+  background-color: transparent;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.rj-stories-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rj-stories-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.rj-stories-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-stories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.rj-story-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.rj-story-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(216, 176, 86, 0.15);
+  border-color: rgba(216, 176, 86, 0.3);
+}
+
+.rj-story-icon {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--accent-gold, #d8b056);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rj-story-text h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+}
+
+.rj-story-text p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  color: #aaa;
+  line-height: 1.3;
+}
+
+.rj-stories-footer {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ccc;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .rj-stories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   PROCESS SECTION
+   ========================================= */
+.rj-process-section {
+  background-color: transparent;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.rj-process-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rj-process-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.rj-process-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-process-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 4rem;
+}
+
+.rj-process-flow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+/* The subtle background line connecting steps */
+.rj-process-flow::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold, #d8b056), var(--accent-red, #b80015), var(--accent-gold, #d8b056), transparent);
+  box-shadow: 0 0 15px rgba(216, 176, 86, 0.4);
+  z-index: 0;
+}
+
+.rj-process-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.rj-process-number {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+  color: var(--accent-gold, #d8b056);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--accent-gold, #d8b056);
+  box-shadow: 0 0 20px rgba(216, 176, 86, 0.2), inset 0 0 10px rgba(216, 176, 86, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rj-process-step:hover .rj-process-number {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(216, 176, 86, 0.6), inset 0 0 15px rgba(216, 176, 86, 0.4);
+  background: var(--accent-red, #b80015);
+  color: #fff;
+  border-color: #fff;
+}
+
+.rj-process-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.rj-process-card h3 {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.rj-process-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #eee;
+}
+
+.rj-process-footer {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--accent-gold, #d8b056);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .rj-process-flow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rj-process-flow::before {
+    display: none;
+  }
+  .rj-process-step {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .rj-process-number {
+    margin-bottom: 0;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .rj-process-card {
+    text-align: left;
+  }
+}
+
+/* =========================================
+   PLATFORMS SECTION
+   ========================================= */
+.rj-platforms-section {
+  background-color: transparent;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.rj-platforms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rj-platforms-title {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.rj-platforms-title span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-platforms-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-bottom: 4rem;
+}
+
+.rj-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.rj-platform-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.rj-platform-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.rj-platform-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  margin-bottom: 1.5rem;
+}
+
+.rj-platform-logo img {
+  /* Original colors preserved */
+  transition: transform 0.3s ease;
+}
+
+.rj-platform-card:hover .rj-platform-logo img {
+  transform: scale(1.1);
+}
+
+.rj-platform-divider {
+  height: 2px;
+  width: 50px;
+  background-color: var(--accent-gold, #d8b056);
+  margin: 0 auto 1.5rem auto;
+}
+
+.rj-platform-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+.rj-platforms-banner {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.rj-platforms-banner p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.rj-platforms-banner strong {
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* =========================================
+   CTA SECTION
+   ========================================= */
+.rj-cta-section {
+  background-color: transparent;
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.rj-cta-bg-circles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rj-circle-1, .rj-circle-2, .rj-circle-3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rj-circle-1 { width: 40vw; height: 40vw; }
+.rj-circle-2 { width: 70vw; height: 70vw; }
+.rj-circle-3 { width: 100vw; height: 100vw; }
+
+.rj-cta-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.rj-cta-small {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.rj-cta-large {
+  font-family: 'Outfit', sans-serif; font-weight: 800;
+  font-size: 8rem;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.rj-cta-large span {
+  color: var(--accent-red, #b80015);
+}
+
+.rj-cta-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  color: #ddd;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .rj-cta-large { font-size: 5rem; }
+  .rj-cta-small { font-size: 1.8rem; }
+}
+
+@media (max-width: 480px) {
+  .rj-cta-large { font-size: 3.5rem; }
+  .rj-cta-small { font-size: 1.5rem; }
+  .rj-why-title, .rj-stories-title, .rj-process-title, .rj-platforms-title { font-size: 2.5rem; }
+}
+
+/* Visibility Utilities */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+}

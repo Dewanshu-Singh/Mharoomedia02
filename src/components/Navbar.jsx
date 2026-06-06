@@ -23,14 +23,15 @@ const Navbar = () => {
 
   // Active section tracking logic
   useEffect(() => {
-    // If we are on the /services page or /about page, set active and skip scroll tracking
-    if (location.pathname === '/services') {
-      setActiveSection('services');
-      return;
-    }
-    
+    // If we are on the /about page, set active and skip scroll tracking
     if (location.pathname === '/about') {
       setActiveSection('about');
+      return;
+    }
+
+    // If we are not on the homepage, clear the active section (so Home isn't highlighted)
+    if (location.pathname !== '/') {
+      setActiveSection('');
       return;
     }
 

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import './Services.css';
 import Magnetic from './Magnetic';
 
+import TiltCard from './TiltCard';
+
 const servicesData = [
   { id: 1, title: "Social Media Management", image: "/ELEMENT1.svg", desc: "Build audience and engagement with tailored social media strategies." },
   { id: 2, title: "Search Engine Optimization", image: "/ELEMENT2.svg", desc: "Drive organic traffic and improve visibility on search engines." },
@@ -70,13 +72,16 @@ const Services = () => {
                   exit={{ opacity: 0, scale: 1.05, y: -30 }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="showcase-image-wrapper"
+                  style={{ perspective: 1000 }}
                 >
-                   <img 
-                     src={servicesData[activeIndex].image} 
-                     alt={servicesData[activeIndex].title} 
-                     className="showcase-image" 
-                     onError={(e) => { e.target.style.display = 'none'; }}
-                   />
+                   <TiltCard style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center' }}>
+                     <img 
+                       src={servicesData[activeIndex].image} 
+                       alt={servicesData[activeIndex].title} 
+                       className="showcase-image" 
+                       onError={(e) => { e.target.style.display = 'none'; }}
+                     />
+                   </TiltCard>
                 </motion.div>
               </AnimatePresence>
               
