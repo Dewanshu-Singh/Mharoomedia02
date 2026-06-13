@@ -60,7 +60,10 @@
   width: 100%;
   max-width: 1000px;
   height: 500px;
-  background: #121214; /* Solid color prevents text bleeding */
+  /* Solid on the left for text readability, slightly transparent on the right for depth */
+  background: linear-gradient(105deg, #121214 0%, #121214 55%, rgba(18, 18, 20, 0.8) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 30px;
   overflow: hidden;
