@@ -60,8 +60,8 @@
   width: 100%;
   max-width: 1000px;
   height: 500px;
-  /* Solid on the left for text readability, slightly transparent on the right for depth */
-  background: linear-gradient(105deg, #121214 0%, #121214 55%, rgba(18, 18, 20, 0.95) 100%);
+  /* Solid on the left for text readability, virtually solid on the right (0.99) to minimize transparency bleeding */
+  background: linear-gradient(105deg, #121214 0%, #121214 55%, rgba(18, 18, 20, 0.99) 100%);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.08);
