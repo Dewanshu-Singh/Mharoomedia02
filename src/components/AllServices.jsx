@@ -66,8 +66,8 @@ const Card = ({ service, index, progress, totalCards }) => {
   // Also push it slightly up/back to enhance the 3D stack effect
   const yOffset = useTransform(progress, [shrinkStart, 1], ["0%", `-${(totalCards - index) * 2}%`]);
   
-  // Opacity can slightly fade for deeper cards
-  const opacity = useTransform(progress, [shrinkStart, 1], [1, 0.3 + (index * 0.1)]);
+  // Opacity fades significantly for deeper cards so they are barely visible
+  const opacity = useTransform(progress, [shrinkStart, 1], [1, 0.15]);
 
   return (
     <div className="card-sticky-container">
