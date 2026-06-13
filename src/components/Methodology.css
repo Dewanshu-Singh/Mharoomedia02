@@ -1,0 +1,153 @@
+.methodology-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.methodology-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 700px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.methodology-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: -10px; /* pull closer to title */
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #fff, var(--accent-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  position: relative;
+}
+
+.methodology-card {
+  position: relative;
+  padding: 40px 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(20, 20, 20, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.methodology-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(184, 0, 21, 0.15) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.methodology-card:hover {
+  border-color: rgba(184, 0, 21, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(184, 0, 21, 0.15);
+}
+
+.methodology-card:hover::before {
+  opacity: 1;
+}
+
+.card-number {
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1;
+}
+
+.methodology-card:hover .card-number {
+  -webkit-text-stroke: 1px var(--accent-red);
+  color: rgba(184, 0, 21, 0.1);
+  transform: scale(1.05) translateX(10px);
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-red);
+  transition: width 0.4s ease;
+}
+
+.methodology-card:hover .card-title::after {
+  width: 40px;
+}
+
+.card-desc {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Glow effect on hover */
+.card-glow {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: var(--accent-red);
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  bottom: -80px;
+  right: -80px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.methodology-card:hover .card-glow {
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .methodology-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .methodology-section {
+    padding: 60px 0;
+  }
+  .card-number {
+    font-size: 3.5rem;
+  }
+}
