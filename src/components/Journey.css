@@ -1,158 +1,181 @@
 .journey-section {
-  padding: 100px 0;
+  padding: 80px 0;
   position: relative;
   background: transparent;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-.ribbon-timeline {
+.journey-section .section-header {
+  margin-bottom: 60px;
+}
+
+.journey-compact-container {
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-bottom: 50px;
 }
 
-.ribbon-item {
+/* Horizontal Stepper */
+.journey-stepper {
+  width: 100%;
   position: relative;
-  width: 55%;
-  margin-bottom: 50px; /* Space for the connecting fold */
-  perspective: 1000px; /* Essential for the 3D scroll-in effect */
+  margin-bottom: 50px;
+  padding-top: 30px;
 }
 
-/* Alternate alignment */
-.ribbon-left {
-  align-self: flex-start;
-  margin-right: 15%; /* Slight offset to overlap the center visually */
-}
-
-.ribbon-right {
-  align-self: flex-end;
-  margin-left: 15%;
-}
-
-/* The primary colored card */
-.ribbon-card {
-  background: linear-gradient(135deg, var(--ribbon-color) 0%, rgba(0,0,0,0.6) 250%);
-  padding: 30px 40px;
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-/* 
-  Use clip-path to slice the inner edge of the cards like a folded ribbon. 
-  Left item: flat on the left, chevron cut on the right.
-  Right item: flat on the right, chevron cut on the left.
-*/
-.ribbon-left .ribbon-card {
-  border-radius: 40px 0 0 40px;
-  clip-path: polygon(0% 0%, 100% 0%, 88% 50%, 100% 100%, 0% 100%);
-  padding-right: 60px;
-  border-right: none;
-}
-
-.ribbon-right .ribbon-card {
-  border-radius: 0 40px 40px 0;
-  clip-path: polygon(12% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  padding-left: 60px;
-  flex-direction: row-reverse;
-  border-left: none;
-}
-
-.ribbon-step {
-  font-family: 'Space Mono', monospace;
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgba(255,255,255,0.8);
-  line-height: 1;
-}
-
-.ribbon-content h3 {
-  font-size: 1.6rem;
-  color: #fff;
-  margin-bottom: 10px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.ribbon-content p {
-  color: rgba(255,255,255,0.7);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-/* 
-  The 3D Fold Connector:
-  This sits underneath the card and bridges the gap to the next card,
-  darkened to look like a shadow fold.
-*/
-.ribbon-fold {
+.stepper-line-bg {
   position: absolute;
-  bottom: -50px; /* Matches margin-bottom of ribbon-item */
-  width: 80px;
-  height: 90px; /* Tall enough to hide under both cards */
-  background: var(--ribbon-color);
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--glass-border);
+  transform: translateY(-50%);
+  border-radius: 2px;
   z-index: 1;
-  filter: brightness(0.3); /* The crucial shadow effect */
 }
 
-/* 
-  On the left item, the fold connects the right edge of the card 
-  to the left edge of the next (right) card.
-*/
-.ribbon-left .ribbon-fold {
-  right: 20px;
-  transform: skewX(-40deg);
-  border-radius: 0 20px 20px 0;
+.stepper-line-progress {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  background: var(--accent-red);
+  transform: translateY(-50%);
+  border-radius: 2px;
+  z-index: 2;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
 }
 
-/* 
-  On the right item, the fold connects the left edge of the card 
-  to the right edge of the next (left) card.
-*/
-.ribbon-right .ribbon-fold {
-  left: 20px;
-  transform: skewX(40deg);
-  border-radius: 20px 0 0 20px;
+.stepper-nodes {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 3;
+}
+
+.stepper-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.node-year {
+  position: absolute;
+  top: -35px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.node-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  border: 3px solid var(--glass-border);
+  transition: all 0.4s ease;
+}
+
+/* Node States */
+.stepper-node:hover .node-dot {
+  border-color: rgba(229, 9, 20, 0.5);
+  transform: scale(1.2);
+}
+
+.stepper-node.completed .node-dot {
+  border-color: var(--accent-red);
+  background: var(--accent-red);
+}
+
+.stepper-node.active .node-dot {
+  border-color: var(--accent-red);
+  background: var(--bg-color);
+  box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.2);
+  transform: scale(1.3);
+}
+
+.stepper-node.active .node-year {
+  color: var(--accent-red);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transform: translateY(-5px);
+}
+
+/* Active Content Card */
+.journey-active-card {
+  width: 100%;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-year-badge {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  background: rgba(229, 9, 20, 0.1);
+  padding: 6px 16px;
+  border-radius: 30px;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.card-desc {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 992px) {
-  .ribbon-item {
-    width: 70%;
-  }
-}
-
 @media (max-width: 768px) {
-  .ribbon-item {
-    width: 90%;
-    align-self: center !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    margin-bottom: 20px;
+  .node-year {
+    display: none; /* Hide year text on mobile timeline to save space, it's on the card anyway */
   }
   
-  .ribbon-left .ribbon-card, 
-  .ribbon-right .ribbon-card {
-    border-radius: 20px;
-    clip-path: none; /* Remove ribbon cut on mobile for simplicity */
+  .stepper-node.active .node-dot::after {
+    content: attr(data-year);
+    position: absolute;
+    top: -25px;
+    font-size: 0.8rem;
+    color: var(--accent-red);
+  }
+
+  .journey-active-card {
     padding: 30px 20px;
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
   }
   
-  .ribbon-step {
-    font-size: 3rem;
-  }
-  
-  .ribbon-fold {
-    display: none; /* Hide complex folds on mobile */
+  .card-desc {
+    font-size: 1rem;
   }
 }

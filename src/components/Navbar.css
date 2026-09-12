@@ -1,5 +1,5 @@
 .navbar {
-  padding: 8px 0;
+  padding: 20px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
 }
 
 .navbar.scrolled {
-  padding: 4px 0;
+  padding: 12px 0;
 }
 
 .navbar.scrolled .navbar-content {
@@ -19,7 +19,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
   border-radius: 40px;
-  padding: 6px 20px;
+  padding: 10px 24px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   transform: translateY(10px);
   width: calc(100% - 40px);
@@ -41,33 +41,27 @@
 }
 
 .nav-brand {
-  font-family: 'Space Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 12px;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
 .nav-logo {
-  height: 18px;
+  height: 28px;
   width: auto;
 }
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 32px;
 }
 
 .nav-link {
-  font-family: 'Space Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: var(--text-secondary);
   transition: color 0.3s ease;
   position: relative;

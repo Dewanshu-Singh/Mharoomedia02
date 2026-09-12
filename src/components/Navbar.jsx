@@ -24,9 +24,10 @@ const Navbar = () => {
   // Active section tracking logic
   useEffect(() => {
     // If we are on the /about page, set active and skip scroll tracking
-    if (location.pathname === '/about') { setActiveSection('about'); return; }
-    if (location.pathname === '/services') { setActiveSection('services'); return; }
-    if (location.pathname === '/portfolio') { setActiveSection('portfolio'); return; }
+    if (location.pathname === '/about') {
+      setActiveSection('about');
+      return;
+    }
 
     // If we are not on the homepage, clear the active section (so Home isn't highlighted)
     if (location.pathname !== '/') {
@@ -103,10 +104,9 @@ const Navbar = () => {
 
         <ul className={`nav-links ${isOpen ? 'mobile-active' : ''}`}>
           <li><a href="#home" className={`nav-link ${activeSection === 'home' ? 'active' : ''} magnetic-target`} onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
-          <li><Link to="/about" className={`nav-link ${activeSection === 'about' ? 'active' : ''} magnetic-target`} onClick={() => { setIsOpen(false); setActiveSection('about'); }}>About</Link></li>
-          <li><Link to="/services" className={`nav-link ${activeSection === 'services' ? 'active' : ''} magnetic-target`} onClick={() => { setIsOpen(false); setActiveSection('services'); }}>Services</Link></li>
-          <li><Link to="/portfolio" className={`nav-link ${activeSection === 'portfolio' ? 'active' : ''} magnetic-target`} onClick={() => { setIsOpen(false); setActiveSection('portfolio'); }}>Portfolio</Link></li>
+          <li><a href="#services" className={`nav-link ${activeSection === 'services' ? 'active' : ''} magnetic-target`} onClick={(e) => handleNavClick(e, 'services')}>Services</a></li>
           <li><a href="#journey" className={`nav-link ${activeSection === 'journey' ? 'active' : ''} magnetic-target`} onClick={(e) => handleNavClick(e, 'journey')}>Our Journey</a></li>
+          <li><Link to="/about" className={`nav-link ${activeSection === 'about' ? 'active' : ''} magnetic-target`} onClick={() => { setIsOpen(false); setActiveSection('about'); }}>About</Link></li>
           <li><a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''} magnetic-target`} onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
         </ul>
 

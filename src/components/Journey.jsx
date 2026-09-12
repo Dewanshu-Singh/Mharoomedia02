@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,152 +8,114 @@ gsap.registerPlugin(ScrollTrigger);
 
 const journeyData = [
   {
-    step: "01",
     title: "The Inception",
-    desc: "Where the idea started. A passionate group of creators with a big vision to revolutionize digital experiences.",
-    color: "#d9a1a0" // Muted pinkish/rose gold
+    desc: "Where the idea started. A small group of passionate creators with a big vision to revolutionize digital experiences.",
+    year: "2023"
   },
   {
-    step: "02",
     title: "Assembling the Team",
     desc: "Gathering the creative minds. We expanded our talent pool, bringing in top-tier designers, developers, and strategists.",
-    color: "#6b616c" // Dark mauve/purple
+    year: "2024"
   },
   {
-    step: "03",
     title: "First Major Success",
     desc: "Landing our first big campaign that put us on the map and proved our data-driven strategies work.",
-    color: "#463d42" // Dark espresso
+    year: "2025"
   },
   {
-    step: "04",
     title: "Scaling & Innovation",
     desc: "Expanding our services globally and pushing the boundaries of what is possible in the digital space.",
-    color: "#bc483a" // Deep terracotta red
+    year: "2026"
   },
   {
-    step: "05",
     title: "The Future",
     desc: "Continuously evolving. We are looking ahead, adopting new technologies, and shaping the future of digital media.",
-    color: "#e88031" // Burnt orange
+    year: "Present"
   }
 ];
 
 const Journey = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef(null);
+  const cardRef = useRef(null);
+  
+  // Ref to track the current index without triggering re-renders during smooth scroll calculation
+  const currentIndexRef = useRef(0); 
 
   useGSAP(() => {
-    const items = gsap.utils.toArray('.ribbon-item');
-    
-    items.forEach((item, i) => {
-      const isEven = i % 2 === 0;
-      
-      // 1. Initial Entrance Animation (Scrubbed slide in from sides)
-      gsap.fromTo(item,
-        { 
-          opacity: 0, 
-          x: isEven ? -300 : 300, 
-          rotationY: isEven ? -25 : 25 
-        },
-        { 
-          opacity: 1, 
-          x: 0, 
-          rotationY: 0,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 100%", // Start when just entering the viewport
-            end: "top 70%",    // Finish sliding into place
-            scrub: 1.5
+    // Pin the section and map scroll progress to the active index
+    ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "center center", // Pin when the section is centered on screen
+      end: "+=2500", // The user has to scroll 2500px to get through the 5 points
+      pin: true,
+      scrub: true,
+      onUpdate: (self) => {
+        // Map progress (0 to 1) to an index (0 to 4)
+        // Using 4.99 ensures we never hit exactly 5 which would be out of bounds
+        const newIndex = Math.floor(self.progress * 4.99);
+        
+        // Only update state if the index actually changes
+        if (newIndex !== currentIndexRef.current) {
+          currentIndexRef.current = newIndex;
+          setActiveIndex(newIndex);
+          
+          // Trigger the card entry animation
+          if (cardRef.current) {
+            gsap.fromTo(cardRef.current,
+              { opacity: 0, y: 20, scale: 0.98 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power2.out", overwrite: true }
+            );
           }
         }
-      );
-
-      // 2. Scroll Focus (Dull -> Bright as it enters center)
-      gsap.fromTo(item,
-        { filter: 'brightness(0.3) grayscale(0.8)', scale: 0.9 },
-        { 
-          filter: 'brightness(1) grayscale(0)', 
-          scale: 1,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 75%", // start brightening when card is in lower middle
-            end: "top 35%",   // fully bright at upper middle
-            scrub: 1.5
-          }
-        }
-      );
-
-      // 3. Scroll Defocus (Bright -> Dull as it leaves top)
-      gsap.to(item,
-        { 
-          filter: 'brightness(0.3) grayscale(0.8)', 
-          scale: 0.9,
-          scrollTrigger: {
-            trigger: item,
-            start: "top 15%", 
-            end: "bottom top", 
-            scrub: 1.5
-          }
-        }
-      );
-
-      // 4. Parallax Text inside the card
-      const title = item.querySelector('.ribbon-content h3');
-      const desc = item.querySelector('.ribbon-content p');
-      const step = item.querySelector('.ribbon-step');
-      
-      if (title && desc && step) {
-        gsap.fromTo(title, 
-          { y: 25 }, 
-          { y: -25, ease: 'none', scrollTrigger: { trigger: item, start: "top bottom", end: "bottom top", scrub: true } }
-        );
-        gsap.fromTo(desc, 
-          { y: 15 }, 
-          { y: -15, ease: 'none', scrollTrigger: { trigger: item, start: "top bottom", end: "bottom top", scrub: true } }
-        );
-        // The big step number moves oppositely for cool depth
-        gsap.fromTo(step, 
-          { y: -20 }, 
-          { y: 20, ease: 'none', scrollTrigger: { trigger: item, start: "top bottom", end: "bottom top", scrub: true } }
-        );
       }
-
     });
+
   }, { scope: containerRef });
 
   return (
     <section className="journey-section" id="journey" ref={containerRef}>
       <div className="container">
-        <div className="section-header text-center" style={{ marginBottom: '80px' }}>
+        <div className="section-header text-center">
           <h2 className="section-title">Our <span className="highlight">Journey</span></h2>
-          <p className="section-subtitle" style={{ color: 'var(--text-secondary)' }}>The milestones that shaped Mharoo Media</p>
+          <p className="section-subtitle">The milestones that shaped Mharoo Media</p>
         </div>
 
-        <div className="ribbon-timeline">
-          {journeyData.map((item, index) => {
-            const isEven = index % 2 === 0;
-            return (
-              <div 
-                className={`ribbon-item ${isEven ? 'ribbon-left' : 'ribbon-right'}`} 
-                key={index}
-                style={{ '--ribbon-color': item.color }}
-              >
-                {/* The main folded card face */}
-                <div className="ribbon-card">
-                  <div className="ribbon-step">{item.step}</div>
-                  <div className="ribbon-content">
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                  </div>
+        <div className="journey-compact-container">
+          
+          {/* Horizontal Stepper Timeline */}
+          <div className="journey-stepper">
+            <div className="stepper-line-bg"></div>
+            <div 
+              className="stepper-line-progress" 
+              style={{ width: `${(activeIndex / (journeyData.length - 1)) * 100}%` }}
+            ></div>
+            
+            <div className="stepper-nodes">
+              {journeyData.map((milestone, index) => (
+                <div 
+                  key={index} 
+                  className={`stepper-node ${index === activeIndex ? 'active' : ''} ${index < activeIndex ? 'completed' : ''}`}
+                  onClick={() => {
+                    // Manual clicks are tricky with pinned scrub scroll, but we can leave it or just let scroll control it
+                    // ScrollTrigger will override it anyway if user scrolls, so it's fine.
+                    setActiveIndex(index);
+                  }}
+                >
+                  <span className="node-year">{milestone.year}</span>
+                  <div className="node-dot"></div>
                 </div>
-                
-                {/* The 3D shadow fold that connects to the next block */}
-                {index !== journeyData.length - 1 && (
-                  <div className="ribbon-fold"></div>
-                )}
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          </div>
+
+          {/* Active Content Card */}
+          <div className="journey-active-card glass-card" ref={cardRef}>
+            <span className="card-year-badge">{journeyData[activeIndex].year}</span>
+            <h3 className="card-title">{journeyData[activeIndex].title}</h3>
+            <p className="card-desc">{journeyData[activeIndex].desc}</p>
+          </div>
+
         </div>
       </div>
     </section>
