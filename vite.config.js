@@ -13,7 +13,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         blogs: resolve(__dirname, 'blogs.html'),
-        blogInstagram: resolve(__dirname, 'blog-instagram-admissions.html')
+        blogInstagram: resolve(__dirname, 'blog-instagram-admissions.html'),
+        blogClientRetention: resolve(__dirname, 'blog-client-retention.html')
       }
     }
   }

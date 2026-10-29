@@ -262,4 +262,83 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // --- Campaign Carousel Handling (Blog Article) ---
+  const blogCarouselImg = document.getElementById('blog-carousel-img');
+  const blogPrevBtn = document.getElementById('blog-prev-btn');
+  const blogNextBtn = document.getElementById('blog-next-btn');
+  const blogCounter = document.getElementById('blog-carousel-counter');
+  const blogDotsContainer = document.getElementById('blog-carousel-dots');
+
+  if (blogCarouselImg && blogPrevBtn && blogNextBtn) {
+    const images = ['/img1.jpeg', '/img2.jpeg', '/img3.png', '/img4.png', '/img5.jpeg', '/img6.jpeg', '/img7.jpeg'];
+    let currentIndex = 0;
+
+    // Render dots
+    if (blogDotsContainer) {
+      blogDotsContainer.innerHTML = images.map((_, i) => 
+        `<span class="carousel-dot" data-index="${i}" style="width: 8px; height: 8px; border-radius: 50%; background: ${i === 0 ? 'var(--primary)' : 'rgba(0,0,0,0.2)'}; cursor: pointer; display: inline-block; transition: all 0.25s ease;"></span>`
+      ).join('');
+
+      blogDotsContainer.querySelectorAll('.carousel-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.getAttribute('data-index'), 10);
+          goToSlide(idx);
+        });
+      });
+    }
+
+    const updateUI = () => {
+      if (blogCounter) {
+        blogCounter.textContent = `0${currentIndex + 1} / 0${images.length}`;
+      }
+      if (blogDotsContainer) {
+        blogDotsContainer.querySelectorAll('.carousel-dot').forEach((dot, idx) => {
+          dot.style.background = idx === currentIndex ? 'var(--primary)' : 'rgba(0,0,0,0.2)';
+          dot.style.transform = idx === currentIndex ? 'scale(1.3)' : 'scale(1)';
+        });
+      }
+    };
+
+    const goToSlide = (idx) => {
+      currentIndex = idx;
+      blogCarouselImg.style.opacity = '0';
+      setTimeout(() => {
+        blogCarouselImg.src = images[currentIndex];
+        blogCarouselImg.style.opacity = '1';
+        updateUI();
+      }, 200);
+    };
+
+    const prevSlide = () => {
+      const newIdx = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+      goToSlide(newIdx);
+    };
+
+    const nextSlide = () => {
+      const newIdx = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+      goToSlide(newIdx);
+    };
+
+    blogPrevBtn.addEventListener('click', prevSlide);
+    blogNextBtn.addEventListener('click', nextSlide);
+
+    // Touch support for swiping
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    blogCarouselImg.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    blogCarouselImg.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 40) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 40) {
+        prevSlide();
+      }
+    }, { passive: true });
+  }
 });
+
